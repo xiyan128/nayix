@@ -2,26 +2,36 @@ import Vue from 'vue'
 import {
   Vuetify,
   VApp,
-  VCard,
+  VAvatar,
   VNavigationDrawer,
+  VDivider,
   VFooter,
   VList,
   VBtn,
   VIcon,
+  VCard,
   VGrid,
-  VToolbar
+  VToolbar,
+  transitions,
+  VBreadcrumbs,
+  VChip
 } from 'vuetify'
 
 Vue.use(Vuetify, {
   components: {
     VApp,
-    VCard,
+    VAvatar,
     VNavigationDrawer,
+    VDivider,
     VFooter,
     VList,
     VBtn,
+    VCard,
     VIcon,
     VGrid,
-    VToolbar
+    VToolbar,
+    transitions,
+    VBreadcrumbs,
+    VChip
   }
 })

@@ -1,100 +1,67 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      :mini-variant.sync="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          router
-          :to="item.to"
-          :key="i"
-          v-for="(item, i) in items"
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+  <v-app id="particles-js">
+
+    <!-- 边栏 -->
+    <v-navigation-drawer fixed app width="400" class="ma-2 mr-0 elevation-1 pb-0" height="auto" style="::-webkit-scrollbar:none;">
+
+      <!-- 顶部 -->
+      <v-toolbar prominent class="pa-2 py-4 elevation-0" style="border-left: 5px solid #1976D2;">
+        <v-container fluid class="pa-0">
+          <v-layout row>
+            <v-avatar size="70" class="mr-3">
+              <img src="https://pic1.zhimg.com/v2-7c05640ae359786953b458082c1cbf17_xll.jpg" alt="avatar">
+            </v-avatar>
+            <v-flex>
+              <div class="title">zero</div>
+              <div class="body-2 grey--text text--darken-3">专业讲废话，喜欢用问题的逻辑来回答问题，最喜欢吃栗子！</div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-toolbar>
+
+      <v-divider></v-divider>
+
+      <!-- 下面 -->
+      <v-list class="pa-0">
+        <v-list-group v-for="item in items" v-model="item.active" :key="item.title" :prepend-icon="item.action" no-action class="py-0">
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile v-for="subItem in item.items" :key="subItem.title">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
+              <v-icon>{{ subItem.action }}</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list-group>
+
+        <!-- 脚注 -->
+        <v-footer class="pa-3">
+          <strong class>Xiyan Shao</strong>
+          <v-spacer></v-spacer>
+          <div>&copy; {{ new Date().getFullYear() }}</div>
+        </v-footer>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
-    </v-toolbar>
+
+    <!-- 主栏 -->
     <v-content>
-      <v-container>
-        <nuxt />
+      <v-container fluid style="max-width:1185px !important" class="pa-2 pl-4">
+        <v-card class="pa-3">
+          <v-breadcrumbs class="pa-0">
+            <v-breadcrumbs-item>a</v-breadcrumbs-item>
+            <v-breadcrumbs-item>a</v-breadcrumbs-item>
+            <v-breadcrumbs-item>a</v-breadcrumbs-item>
+          </v-breadcrumbs>
+          <v-divider class="mt-2"></v-divider>
+          <router-view></router-view>
+        </v-card>
       </v-container>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
-    </v-footer>
   </v-app>
-</template>
 
-<script>
-  export default {
-    data () {
-      return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
-      }
-    }
-  }
-</script>
+</template>
