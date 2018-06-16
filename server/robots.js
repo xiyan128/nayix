@@ -1,5 +1,5 @@
 module.exports = (config) =>
-`User-agent: *
+  `User-agent: *
 Allow: /
 Sitemap: ${config.siteUrl}/sitemap.xml
 

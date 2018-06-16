@@ -5,11 +5,11 @@
     <v-navigation-drawer fixed app width="400" class="ma-2 mr-0 elevation-1 pb-0" height="auto" style="::-webkit-scrollbar:none;">
 
       <!-- 顶部 -->
-      <v-toolbar prominent class="pa-2 py-4 elevation-0" style="border-left: 5px solid #1976D2;">
+      <v-toolbar prominent class="pa-2 py-4 elevation-0" style="border-left: 5px solid #0D47A1;">
         <v-container fluid class="pa-0">
           <v-layout row>
             <v-avatar size="70" class="mr-3">
-              <img src="https://pic1.zhimg.com/v2-7c05640ae359786953b458082c1cbf17_xll.jpg" alt="avatar">
+              <img :src="$store.state.user.avatar" alt="avatar">
             </v-avatar>
             <v-flex>
               <div class="title">zero</div>
@@ -19,25 +19,46 @@
         </v-container>
       </v-toolbar>
 
-      <v-divider></v-divider>
+      <!-- <v-divider></v-divider> -->
 
       <!-- 下面 -->
       <v-list class="pa-0">
-        <v-list-group v-for="item in items" v-model="item.active" :key="item.title" :prepend-icon="item.action" no-action class="py-0">
-          <v-list-tile slot="activator">
+
+          <v-list-tile style="border-left: 5px solid #1565C0;">
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              <v-list-tile-title>主页</v-list-tile-title>
             </v-list-tile-content>
+            <v-list-tile-avatar>
+              <v-icon>home</v-icon>
+            </v-list-tile-avatar>
           </v-list-tile>
-          <v-list-tile v-for="subItem in item.items" :key="subItem.title">
+
+          <v-list-tile style="border-left: 5px solid #1976D2;">
             <v-list-tile-content>
-              <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+              <v-list-tile-title>归档</v-list-tile-title>
             </v-list-tile-content>
-            <v-list-tile-action>
-              <v-icon>{{ subItem.action }}</v-icon>
-            </v-list-tile-action>
+            <v-list-tile-avatar>
+              <v-icon>archive</v-icon>
+            </v-list-tile-avatar>
           </v-list-tile>
-        </v-list-group>
+
+          <v-list-tile style="border-left: 5px solid #1E88E5;">
+            <v-list-tile-content>
+              <v-list-tile-title>标签</v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-avatar>
+              <v-icon>label</v-icon>
+            </v-list-tile-avatar>
+          </v-list-tile>
+
+          <div class="pa-2 px-4" style="border-left: 5px solid #42A5F5;">
+            <li class="ma-1" style="display:inline;" v-for="(tag, index) in [1,2]" :key="index">
+              <v-badge right overlap>
+                        <span slot="badge">6</span>
+                        <v-chip>{{tag.name}}</v-chip>
+                        </v-badge>
+            </li>
+          </div>
 
         <!-- 脚注 -->
         <v-footer class="pa-3">
@@ -65,3 +86,6 @@
   </v-app>
 
 </template>
+
+<script>
+</script>

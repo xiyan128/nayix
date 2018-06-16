@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import config from '../config'
 const User = mongoose.model('User')
 
-export default async(ctx, next) => {
+export default async (ctx, next) => {
   const token = ctx.get('token')
   if (token) {
     const decoded = jwt.verify(token, config.jwt.secret)

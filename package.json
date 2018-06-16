@@ -5,7 +5,7 @@
   "author": "ShaoXiyan <shaoxy128@foxmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nodemon -w ./server -w ./start.js --exec node ./start.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"

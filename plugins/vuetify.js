@@ -14,7 +14,8 @@ import {
   VToolbar,
   transitions,
   VBreadcrumbs,
-  VChip
+  VChip,
+  VBadge
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -32,6 +33,7 @@ Vue.use(Vuetify, {
     VToolbar,
     transitions,
     VBreadcrumbs,
-    VChip
+    VChip,
+    VBadge
   }
 })

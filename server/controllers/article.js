@@ -5,7 +5,7 @@ import fs from 'fs'
 import formidable from 'formidable'
 const Article = mongoose.model('Article')
 
-export const getArticles = async(ctx, next) => {
+export const getArticles = async (ctx, next) => {
   let { page = 1, limit = 15 } = ctx.params
   page = Number((page - 1) * limit) || 0
   limit = Number(limit) || 15
@@ -36,7 +36,7 @@ export const getArticles = async(ctx, next) => {
   }
 }
 
-export const getPrivateArticles = async(ctx, next) => {
+export const getPrivateArticles = async (ctx, next) => {
   const data = await Article.find({ publish: false })
     .populate({
       path: 'tags',
@@ -50,7 +50,7 @@ export const getPrivateArticles = async(ctx, next) => {
   }
 }
 
-export const getArticle = async(ctx, next) => {
+export const getArticle = async (ctx, next) => {
   let { id } = ctx.params
   if (!id) {
     return (ctx.body = {
@@ -80,7 +80,7 @@ export const getArticle = async(ctx, next) => {
   }
 }
 
-export const postArticle = async(ctx, next) => {
+export const postArticle = async (ctx, next) => {
   let body = ctx.request.body
   let { title, content, publish } = body
   if (!title || !content || !String(publish)) {
@@ -108,7 +108,7 @@ export const postArticle = async(ctx, next) => {
 }
 
 // modify publish article or private article
-export const patchArticle = async(ctx, next) => {
+export const patchArticle = async (ctx, next) => {
   let body = ctx.request.body
   body.updatedAt = Date.now()
   let { id, title, content, publish } = body
@@ -133,7 +133,7 @@ export const patchArticle = async(ctx, next) => {
   }
 }
 
-export const deleteArticle = async(ctx, next) => {
+export const deleteArticle = async (ctx, next) => {
   let { id } = ctx.params
 
   if (!id) {
@@ -157,7 +157,7 @@ export const deleteArticle = async(ctx, next) => {
   }
 }
 
-export const search = async(ctx, next) => {
+export const search = async (ctx, next) => {
   const { keyword } = ctx.params
   const reg = new RegExp(keyword, 'i')
   try {
@@ -165,8 +165,8 @@ export const search = async(ctx, next) => {
       publish: true,
       $or: [{ title: { $regex: reg }}, { content: { $regex: reg }}]
     })
-    .sort({'createdAt': -1})
-    .exec()
+      .sort({'createdAt': -1})
+      .exec()
     ctx.body = {
       success: true,
       data: body
@@ -179,7 +179,7 @@ export const search = async(ctx, next) => {
   }
 }
 
-export const archives = async(ctx, next) => {
+export const archives = async (ctx, next) => {
   let articles = await Article.find({ publish: true })
     .populate({
       path: 'tags',
@@ -227,10 +227,10 @@ export const archives = async(ctx, next) => {
   }
 }
 
-export const upload = async(ctx, next) => {
+export const upload = async (ctx, next) => {
   let form = new formidable.IncomingForm()
 
-  function getImgUrl(ctx) {
+  function getImgUrl (ctx) {
     return new Promise((resolve, reject) => {
       form.parse(ctx.req, function (err, fields, files) {
         if (err) {

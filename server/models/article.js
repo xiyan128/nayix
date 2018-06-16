@@ -41,7 +41,7 @@ const ArticleSchema = new Schema({
 ArticleSchema.options.toJSON = {
   virtuals: true,
   versionKey: false,
-  transform(doc, ret) {
+  transform (doc, ret) {
     ret.id = ret._id
     delete ret._id
   }

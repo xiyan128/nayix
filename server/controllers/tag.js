@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 const Tag = mongoose.model('Tag')
 const Article = mongoose.model('Article')
-export const getTagsOrArticles = async(ctx, next) => {
+export const getTagsOrArticles = async (ctx, next) => {
   let { id } = ctx.params, data
   if (id) {
     try {
-      data = await Article.find({ publish: true, tags: [id] })
+      data = await Article.find({ publish: true, tags: id })
         .populate({
           path: 'tags',
           select: 'id name'
@@ -31,7 +31,7 @@ export const getTagsOrArticles = async(ctx, next) => {
   }
 }
 
-export const postTag = async(ctx, next) => {
+export const postTag = async (ctx, next) => {
   let body = ctx.request.body
   let { name } = body
 
@@ -57,7 +57,7 @@ export const postTag = async(ctx, next) => {
   }
 }
 
-export const patchTag = async(ctx, next) => {
+export const patchTag = async (ctx, next) => {
   let body = ctx.request.body
   body.updatedAt = Date.now()
   const { id } = body
@@ -82,7 +82,7 @@ export const patchTag = async(ctx, next) => {
   }
 }
 
-export const deleteTag = async(ctx, next) => {
+export const deleteTag = async (ctx, next) => {
   let { id } = ctx.params
 
   if (!id) {
