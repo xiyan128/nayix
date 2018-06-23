@@ -12,7 +12,6 @@ export default {
   async asyncData ({ store, route }) {
     let id = route.params.id || ''
     const { data } = await store.dispatch('TAGS', id)
-    console.log(data)
     return {
       lists: data || []
     }

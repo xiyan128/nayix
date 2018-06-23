@@ -94,5 +94,11 @@
 </template>
 
 <script>
-
+export default {
+  head () {
+    return {
+      title: this.$store.state.user.nickname
+    }
+  }
+}
 </script>
