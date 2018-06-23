@@ -17,7 +17,7 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
-  plugins: ['~/plugins/vuetify.js'],
+  plugins: ['~/plugins/vuetify.js', '~/plugins/components.js'],
   css: [
     '~/assets/style/app.styl'
   ],
@@ -31,10 +31,10 @@ module.exports = {
   build: {
     babel: {
       plugins: [
-        ["transform-imports", {
-          "vuetify": {
-            "transform": "vuetify/es5/components/${member}",
-            "preventFullImport": true
+        ['transform-imports', {
+          'vuetify': {
+            'transform': 'vuetify/es5/components/${member}',
+            'preventFullImport': true
           }
         }]
       ]
