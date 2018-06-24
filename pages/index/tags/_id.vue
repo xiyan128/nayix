@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="display-1 my-2">{{getTagName()}}</h1>
+    <h1 class="display-1 my-2"><v-icon large color="grey lighten-2">label</v-icon>{{getTagName()}}</h1>
       <div>
         <articleItem v-bind="item" v-for="(item, index) in lists" :key="index"></articleItem>
     </div>

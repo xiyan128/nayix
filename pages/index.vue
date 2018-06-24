@@ -23,8 +23,7 @@
 
       <!-- 下面 -->
       <v-list class="pa-0">
-
-          <v-list-tile style="border-left: 5px solid #1565C0;">
+          <v-list-tile style="border-left: 5px solid #0D47A1" nuxt to="/" ripple>
             <v-list-tile-content>
               <v-list-tile-title>主页</v-list-tile-title>
             </v-list-tile-content>
@@ -33,7 +32,16 @@
             </v-list-tile-avatar>
           </v-list-tile>
 
-          <v-list-tile style="border-left: 5px solid #1976D2;">
+          <v-list-tile style="border-left: 5px solid #1565C0" nuxt to="/search" ripple>
+            <v-list-tile-content>
+              <v-list-tile-title>搜索</v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-avatar>
+              <v-icon>search</v-icon>
+            </v-list-tile-avatar>
+          </v-list-tile>
+
+          <v-list-tile style="border-left: 5px solid #1976D2" nuxt to="/archive" ripple>
             <v-list-tile-content>
               <v-list-tile-title>归档</v-list-tile-title>
             </v-list-tile-content>
@@ -42,7 +50,7 @@
             </v-list-tile-avatar>
           </v-list-tile>
 
-          <v-list-tile style="border-left: 5px solid #1E88E5;">
+          <v-list-tile style="border-left: 5px solid #1E88E5">
             <v-list-tile-content>
               <v-list-tile-title>标签</v-list-tile-title>
             </v-list-tile-content>
@@ -51,13 +59,13 @@
             </v-list-tile-avatar>
           </v-list-tile>
 
-          <div class="pa-2 px-4" style="border-left: 5px solid #42A5F5;">
+          <div class="pa-2 px-4" style="border-left: 5px solid #42A5F5">
             <li class="ma-1" style="display:inline;" v-for="(tag, index) in $store.state.tags" :key="index">
               <nuxt-link :to="'/tags/'+tag.id"><v-chip>{{tag.name}}</v-chip></nuxt-link>
             </li>
           </div>
 
-           <v-list-tile style="border-left: 5px solid #1E88E5;">
+           <v-list-tile style="border-left: 5px solid #64B5F6"  nuxt to="/about" ripple>
             <v-list-tile-content>
               <v-list-tile-title>关于</v-list-tile-title>
             </v-list-tile-content>
@@ -65,6 +73,7 @@
               <v-icon>alternate_email</v-icon>
             </v-list-tile-avatar>
           </v-list-tile>
+
 
         <!-- 脚注 -->
         <v-footer class="pa-3">

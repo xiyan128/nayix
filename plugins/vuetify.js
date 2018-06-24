@@ -15,7 +15,8 @@ import {
   transitions,
   VBreadcrumbs,
   VChip,
-  VBadge
+  VBadge,
+  VProgressCircular
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -34,6 +35,7 @@ Vue.use(Vuetify, {
     transitions,
     VBreadcrumbs,
     VChip,
-    VBadge
+    VBadge,
+    VProgressCircular
   }
 })
