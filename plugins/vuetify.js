@@ -17,7 +17,7 @@ import {
   VChip,
   VBadge,
   VProgressCircular,
-  VTextfield,
+  VTextField,
   VAlert
 } from 'vuetify'
 
@@ -39,7 +39,7 @@ Vue.use(Vuetify, {
     VChip,
     VBadge,
     VProgressCircular,
-    VTextfield,
+    VTextField,
     VAlert
   }
 })
