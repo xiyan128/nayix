@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="display-1 my-2"><v-icon large color="grey lighten-2">label</v-icon>{{getTagName()}}</h1>
+    <h1 class="display-1 my-2">{{getTagName()}}</h1>
       <div>
-        <articleItem v-bind="item" v-for="(item, index) in lists" :key="index"></articleItem>
+        <articleItem v-bind="item" v-for="(item, index) in list" :key="index"></articleItem>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
     let id = route.params.id || ''
     const { data } = await store.dispatch('TAGS', id)
     return {
-      lists: data || []
+      list: data || []
     }
   },
   head () {

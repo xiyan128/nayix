@@ -66,8 +66,8 @@ export default {
     return data
   },
 
-  async ARTICLES ({ commit, state, getters }, page = 1, limit = 15) {
-    const { data } = await axios.get(`${getters.baseUrl}/articles/${page}/${limit}`)
+  async ARTICLES ({ commit, state, getters }, { page = 1, pageLim = 15 }) {
+    const { data } = await axios.get(`${getters.baseUrl}/articles/${page}/${pageLim}`)
     return data
   },
 

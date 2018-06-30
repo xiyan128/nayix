@@ -154,7 +154,7 @@
       display block
       overflow hidden
       & > span 
-        border 1px solid #dddddd
+        // border 1px solid #dddddd
         display block
         float left
         overflow hidden
@@ -213,7 +213,7 @@
         overflow hidden
         margin 13px auto 0
         text-align right
-  code, tt 
+  tt 
     margin 0 2px
     padding 0 5px
     white-space nowrap
@@ -222,7 +222,7 @@
     border-radius 3px
   pre 
     background-color #f8f8f8
-    border 1px solid #cccccc
+    // border 1px solid #cccccc
     font-size 13px
     line-height 19px
     overflow auto
@@ -237,7 +237,7 @@
   .highlight 
     pre 
       background-color #f8f8f8
-      border 1px solid #cccccc
+      // border 1px solid #cccccc
       font-size 13px
       line-height 19px
       overflow auto
@@ -250,6 +250,12 @@
     font-family Consolas, Monaco, monospace
   code:after, kbd:after, code:before, kbd:before
     content none
+  code
+    display inline
+    padding-top 2px
+    padding-bottom 2px
+    box-shadow none 
+    background-color #f8f8f8
   sup 
     font-size 0.83em
     vertical-align super
