@@ -8,6 +8,7 @@
     "dev": "nodemon -w ./server -w ./start.js --exec node ./start.js",
     "build": "nuxt build",
     "start": "nuxt start",
+    "startServer": "node ./startServer.js", 
     "generate": "nuxt generate"
   },
   "dependencies": {

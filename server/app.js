@@ -6,6 +6,7 @@ import Router from 'koa-router'
 import cors from '@koa/cors'
 import globalConfig from './config'
 import route from './routes'
+import { getRssBodyFromBody } from './rss'
 
 const app = new Koa()
 const router = new Router()
@@ -20,9 +21,9 @@ let rssApi = `${baseUrl}/${globalConfig.app.routerBaseApi}/articles`
 axios.get(rssApi).then((ret) => {
   const {data} = ret
   rss = getRssBodyFromBody(data, {
-    title: 'VueBlog',
+    title: 'nayix',
     siteUrl: baseUrl,
-    description: 'VueBlog'
+    description: 'A blog'
   })
 })
 
@@ -40,4 +41,4 @@ app
   .use(router.allowedMethods())
 
 app.listen(3000, '127.0.0.1')
-console.log('Server listening on ' + '127.0.0.1:' + 3000) // eslint-disable-line no-console
+console.log('Server listening on ' + '127.0.0.1:' + globalConfig.app.port) // eslint-disable-line no-console

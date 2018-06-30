@@ -1,10 +1,10 @@
 export default {
   user: {
     role: 'superAdmin',
-    username: 'q',
-    password: 'q',
-    email: 'qq22337383@gmail.com',
-    nickname: 'VueBlog',
+    username: 'xiyan128',
+    password: '43127949',
+    email: 'xiyan128@gmail.com',
+    nickname: 'xiyan',
     motto: 'Never too old to learn',
     avatar: 'avatar.png'
   },
@@ -13,18 +13,18 @@ export default {
   },
   mongodb: {
     host: '127.0.0.1',
-    database: 'vueblog',
+    database: 'nayix',
     port: 27017,
     username: '',
     password: ''
   },
   production: {
-    host: '198.13.32.165',
-    domain: 'https://www.86886.wang'
+    host: '140.82.22.235',
+    domain: 'http://xiyan.space'
   },
   app: {
     host: '127.0.0.1',
-    port: 3000,
+    port: 8080,
     routerBaseApi: 'api'
   }
 }
