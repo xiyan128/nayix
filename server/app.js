@@ -40,5 +40,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(globalConfig.app.port, '127.0.0.1')
-console.log('Server listening on ' + '127.0.0.1:' + globalConfig.app.port) // eslint-disable-line no-console
+app.listen(globalConfig.app.port, '0.0.0.0')
+console.log('Server listening on ' + '0.0.0.0:' + globalConfig.app.port) // eslint-disable-line no-console

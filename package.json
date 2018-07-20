@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon -w ./server -w ./start.js --exec node ./start.js",
+    "prod": "export NODE_ENV=production && pm2 start ./start.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "startServer": "node ./startServer.js", 
