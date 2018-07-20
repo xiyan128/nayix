@@ -15,19 +15,19 @@ const article = require('../controllers/article')
 // rss
 let rss = ''
 let baseUrl = `http://${config.app.host}:${config.app.port}`
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   baseUrl = config.production.domain
 }
 let articleApi = `${baseUrl}/${config.app.routerBaseApi}/articles`
 router.get('/rss.xml', async (ctx, next) => {
   await axios.get(articleApi).then((ret) => {
-  let {data} = ret
-  rss = getRssBodyFromBody(data, {
-    title: 'VueBlog',
-    siteUrl: baseUrl,
-    description: 'VueBlog'
+    let {data} = ret
+    rss = getRssBodyFromBody(data, {
+      title: 'VueBlog',
+      siteUrl: baseUrl,
+      description: 'VueBlog'
+    })
   })
-})
   ctx.type = 'application/xml'
   ctx.res.end(rss)
 })
@@ -36,11 +36,11 @@ router.get('/rss.xml', async (ctx, next) => {
 let sitemap = ''
 router.get('/sitemap.xml', async (ctx, next) => {
   await axios.get(articleApi).then((ret) => {
-  const {data} = ret
-  sitemap = getSitemapFromBody(data, {
-    siteUrl: baseUrl
+    const {data} = ret
+    sitemap = getSitemapFromBody(data, {
+      siteUrl: baseUrl
+    })
   })
-})
   ctx.type = 'application/xml'
   ctx.res.end(sitemap)
 })
