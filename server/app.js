@@ -12,7 +12,7 @@ const app = new Koa()
 const router = new Router()
 
 let rss = ''
-let baseUrl = `http://${globalConfig.app.host}:${globalConfig.app.port}`
+let baseUrl = `http://${globalConfig.app.host}:${globalConfig.app.apiPort}`
 if (process.env.NODE_ENV === 'production') {
   baseUrl = globalConfig.production.domain
 }
@@ -40,5 +40,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(globalConfig.app.port, '0.0.0.0')
-console.log('Server listening on ' + '0.0.0.0:' + globalConfig.app.port) // eslint-disable-line no-console
+app.listen(globalConfig.app.apiPort, '0.0.0.0')
+console.log('Server listening on ' + '0.0.0.0:' + globalConfig.app.apiPort) // eslint-disable-line no-console
