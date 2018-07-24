@@ -5,10 +5,10 @@
   "author": "ShaoXiyan <shaoxy128@foxmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nodemon -w ./server -w ./start.js --exec node ./start.js",
+    "dev": "export NODE_ENV=development && nodemon -w ./server -w ./start.js --exec node ./start.js",
     "prod": "export NODE_ENV=production && pm2 start ./start.js",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "export NODE_ENV=production && nuxt start",
     "startServer": "node ./startServer.js", 
     "generate": "nuxt generate"
   },

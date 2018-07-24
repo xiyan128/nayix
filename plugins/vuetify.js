@@ -18,7 +18,11 @@ import {
   VBadge,
   VProgressCircular,
   VTextField,
-  VAlert
+  VAlert,
+  VForm,
+  VTextarea,
+  VCombobox,
+  VSwitch
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -40,6 +44,10 @@ Vue.use(Vuetify, {
     VBadge,
     VProgressCircular,
     VTextField,
-    VAlert
+    VAlert,
+    VForm,
+    VTextarea,
+    VCombobox,
+    VSwitch
   }
 })

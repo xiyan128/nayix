@@ -25,53 +25,29 @@
         <!-- 下面 -->
         <v-list class="pa-0">
 
-          <v-list-tile style="border-left: 5px solid #0D47A1" nuxt to="/" ripple>
+          <v-list-tile style="border-left: 5px solid #0D47A1" nuxt to="compose" ripple>
             <v-list-tile-content>
-              <v-list-tile-title>主页</v-list-tile-title>
+              <v-list-tile-title>撰写</v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-avatar>
-              <v-icon>home</v-icon>
+              <v-icon>create</v-icon>
             </v-list-tile-avatar>
           </v-list-tile>
 
-          <v-list-tile style="border-left: 5px solid #1565C0" nuxt to="/archive" ripple>
+          <v-list-tile style="border-left: 5px solid #1565C0" nuxt to="manage" ripple>
             <v-list-tile-content>
-              <v-list-tile-title>归档</v-list-tile-title>
+              <v-list-tile-title>管理</v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-avatar>
-              <v-icon>archive</v-icon>
-            </v-list-tile-avatar>
-          </v-list-tile>
-
-          <v-list-tile style="border-left: 5px solid #1976D2">
-            <v-list-tile-content>
-              <v-list-tile-title>标签</v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-avatar>
-              <v-icon>label</v-icon>
-            </v-list-tile-avatar>
-          </v-list-tile>
-
-          <div class="pa-2 px-4" style="border-left: 5px solid #1E88E5">
-            <li class="ma-1" style="display:inline;" v-for="(tag, index) in $store.state.tags" :key="index">
-              <nuxt-link :to="'/tags/'+tag.id">
-                <v-chip>{{tag.name}}</v-chip>
-              </nuxt-link>
-            </li>
-          </div>
-          <v-list-tile style="border-left: 5px solid #42A5F5" nuxt to="/about" ripple>
-            <v-list-tile-content>
-              <v-list-tile-title>关于</v-list-tile-title>
-            </v-list-tile-content>
-            <v-list-tile-avatar>
-              <v-icon>alternate_email</v-icon>
+              <v-icon>list_alt</v-icon>
             </v-list-tile-avatar>
           </v-list-tile>
 
 
           <!-- 脚注 -->
           <v-footer class="pa-3">
-            <strong><nuxt-link to="/admin">站长登录</nuxt-link></strong>
+            <!-- TODO: 清除登录状态 -->
+            <strong><a @click="logout">退出登录</a></strong>
             <v-spacer></v-spacer>
             <div>Xiyan Shao &copy; {{ new Date().getFullYear() }}</div>
           </v-footer>
@@ -100,9 +76,21 @@
 
 <script>
 export default {
+  // 鉴权
+  middleware: 'auth',
   head () {
     return {
       title: this.$store.state.user.nickname
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('LOGOUT').then(data => {
+        if (data.success) {
+          this.$store.state.token = ''
+          this.$router.push('/')
+        }
+      })
     }
   }
 }

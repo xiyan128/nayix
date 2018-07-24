@@ -5,7 +5,7 @@
 <script>
 import markdownIt from 'markdown-it'
 export default {
-  name: 'TopPreview',
+  name: 'markdown',
   props: ['content', 'options'],
   data () {
     return {
