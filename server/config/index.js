@@ -5,7 +5,7 @@ export default {
     password: '43127949',
     email: 'xiyan128@gmail.com',
     nickname: 'xiyan',
-    motto: 'Never too old to learn',
+    motto: '有求皆苦，无求乃乐。',
     avatar: 'avatar.png'
   },
   jwt: {

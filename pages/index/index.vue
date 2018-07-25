@@ -5,7 +5,7 @@
         <v-flex xs12 sm8>
           <h1 class="display-1 my-2">主页</h1>
         </v-flex>
-          <v-flex xs12 sm4>
+          <v-flex sm12 md4>
             <v-text-field append-icon="search" class="mx-0" label="搜索" clearable solo @click:append="search" @keyup.enter="search" v-model="keyword" required></v-text-field>
           </v-flex>
       </v-layout>

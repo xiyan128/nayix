@@ -2,7 +2,7 @@
   <v-app>
 
     <!-- 边栏 -->
-    <v-navigation-drawer fixed app width="400" class="my-2 mr-4 elevation-1 pb-0" height="auto" style="::-webkit-scrollbar:none;">
+    <v-navigation-drawer fixed app width="400" class="my-2 mr-4 elevation-1 pb-0" height="auto" style="::-webkit-scrollbar:none;" v-model="drawer">
       
         <!-- 顶部 -->
         <v-toolbar prominent class="pa-2 py-4 elevation-0" style="border-left: 5px solid #0D47A1;">
@@ -12,8 +12,8 @@
                 <img :src="$store.state.user.avatar" alt="avatar">
               </v-avatar>
               <v-flex>
-                <div class="title">zero</div>
-                <div class="body-2 grey--text text--darken-3">专业讲废话，喜欢用问题的逻辑来回答问题，最喜欢吃栗子！</div>
+                <div class="title">{{ $store.state.user.nickname }}</div>
+                <div class="body-2 grey--text text--darken-3">{{ $store.state.user.motto }}</div>
               </v-flex>
             </v-layout>
           </v-container>
@@ -25,7 +25,7 @@
         <!-- 下面 -->
         <v-list class="pa-0">
 
-          <v-list-tile style="border-left: 5px solid #0D47A1" nuxt to="compose" ripple>
+          <v-list-tile style="border-left: 5px solid #0D47A1" nuxt to="/admin/compose" ripple>
             <v-list-tile-content>
               <v-list-tile-title>撰写</v-list-tile-title>
             </v-list-tile-content>
@@ -34,12 +34,21 @@
             </v-list-tile-avatar>
           </v-list-tile>
 
-          <v-list-tile style="border-left: 5px solid #1565C0" nuxt to="manage" ripple>
+          <v-list-tile style="border-left: 5px solid #1565C0" nuxt to="/admin/manage" ripple>
             <v-list-tile-content>
               <v-list-tile-title>管理</v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-avatar>
               <v-icon>list_alt</v-icon>
+            </v-list-tile-avatar>
+          </v-list-tile>
+
+          <v-list-tile style="border-left: 5px solid #1976D2" nuxt to="/admin/drafts" ripple>
+            <v-list-tile-content>
+              <v-list-tile-title>草稿</v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-avatar>
+              <v-icon>drafts</v-icon>
             </v-list-tile-avatar>
           </v-list-tile>
 
@@ -59,7 +68,12 @@
     <!-- 主栏 -->
     <v-content>
       <v-container fluid style="max-width:1185px !important" class="pa-2">
-        <v-card class="pa-3">
+        <v-card class="pa-3" :flat="$vuetify.breakpoint.smAndDown">
+          <v-fab-transition>
+          <v-btn color="primary" class="hidden-md-and-up" fab dark small absolute right @click.stop="drawer = !drawer">
+            <v-icon>menu</v-icon>
+          </v-btn>
+          </v-fab-transition>
           <!-- <v-breadcrumbs class="pa-0">
             <v-breadcrumbs-item>a</v-breadcrumbs-item>
             <v-breadcrumbs-item>a</v-breadcrumbs-item>
@@ -91,6 +105,11 @@ export default {
           this.$router.push('/')
         }
       })
+    }
+  },
+  data () {
+    return {
+      drawer: !this.$vuetify.breakpoint.smAndDown
     }
   }
 }
