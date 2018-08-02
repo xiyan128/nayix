@@ -5,29 +5,21 @@
       <v-card flat color="grey lighten-5" v-for="(item, index) in list" :key="index">
         <v-card-title primary-title class="pa-3 mb-2">
           <v-layout justify-space-between row fill-height>
-            <v-flex xs10>
+            <v-flex xs8 md10>
               <div style="width:100%">
                 <nuxt-link :to="'/detail/'+item.id">
-                  <div class="title mb-1">{{item.title}}</div>
+                  <div class="title mb-1 single-line">{{item.title}}</div>
                 </nuxt-link>
-                <div class="grey--text subheading">{{item.createdAt.substring(0,10)}} |
+                <div class="grey--text subheading hidden-xs-only">{{item.createdAt.substring(0,10)}} |
                   <span v-for="(tag,index) in item.tags" :key="index">
                     <nuxt-link :to="'/tags/'+tag.id">{{tag.name}}</nuxt-link> | </span>{{item.views}} views</div>
               </div>
             </v-flex>
-            <v-flex xs2>
+            <v-flex xs4 md2>
               <v-layout>
-                <v-flex xs4></v-flex>
-                <v-flex xs4>
-                  <v-btn color="error" fab small dark flat @click="del(item.id)">
-                    <v-icon>delete</v-icon>
-                  </v-btn>
-                </v-flex>
-                <v-flex xs4>
-                  <v-btn color="primary" fab small dark flat @click="edit(item.id)">
-                    <v-icon>edit</v-icon>
-                  </v-btn>
-                </v-flex>
+              <v-flex xs0 sm4></v-flex>
+              <v-flex xs6 sm4><v-btn color="error" fab small dark flat @click="del(item.id)"><v-icon>delete</v-icon></v-btn></v-flex>
+              <v-flex xs6 sm4><v-btn color="primary" fab small dark flat @click="edit(item.id)"><v-icon>edit</v-icon></v-btn></v-flex>
               </v-layout>
             </v-flex>
           </v-layout>

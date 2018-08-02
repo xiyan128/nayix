@@ -9,7 +9,7 @@ export default {
     avatar: 'avatar.png'
   },
   jwt: {
-    secret: 'vueblog'
+    secret: 'reivwa;e034cxzf'
   },
   mongodb: {
     host: '127.0.0.1',
@@ -24,7 +24,7 @@ export default {
     domain: 'http://xiyan.space'
   },
   app: {
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     port: 8080,
     apiPort: 3000,
     routerBaseApi: 'api'

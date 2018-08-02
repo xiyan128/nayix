@@ -8,7 +8,7 @@
             <v-flex xs8 md10>
               <div style="width:100%">
                 <nuxt-link :to="'/detail/'+item.id">
-                  <div class="title mb-1">{{item.title}}</div>
+                  <div class="title mb-1 single-line">{{item.title}}</div>
                 </nuxt-link>
                 <div class="grey--text subheading hidden-xs-only">{{item.createdAt.substring(0,10)}} |
                   <span v-for="(tag,index) in item.tags" :key="index">

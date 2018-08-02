@@ -6,11 +6,9 @@
       <v-divider class="my-2"></v-divider>
           <div v-for="(item, index) in archive.articles" :key="index">
           <div style="width:100%">
-            <div class="title my-2" style="overflow:hidden">
-              <span class="subheading" style="color:rgb(0,0,0,0.54)">{{ item.createdAt | formatDate('MM-dd')}} </span>
+            <div class="title my-2">
               <nuxt-link :to="'/detail/'+item.id">{{item.title}}</nuxt-link>
-              <v-chip v-for="(tag,index) in item.tags" :key="index" small label>
-                <nuxt-link :to="'/tags/'+tag.id">{{tag.name}}</nuxt-link></v-chip>
+              <i class="subheading" style="color:rgb(0,0,0,0.54);font-weight:600;"> {{ item.createdAt | formatDate('MM-dd')}} </i>
             </div>
           </div>
           </div>
