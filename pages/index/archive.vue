@@ -1,18 +1,22 @@
 <template>
-  <div>
+  <v-list subheader>
     <div v-for="(archive, index) in archives" :key="index">
-      <h3>{{ archive.date }}({{ archive.total }})</h3>
-      <v-divider class="my-2"></v-divider>
-          <div v-for="(item, index) in archive.articles" :key="index">
-          <div style="width:100%">
-            <div class="title my-2">
+       <v-subheader class="subheading">{{ archive.date }}({{ archive.total }})</v-subheader>
+          <v-list-tile v-for="(item, index) in archive.articles" :key="index">
+          <v-list-tile-content style="width:100%">
+            <div style="border-left: 2px solid #000000" class="pl-2">
+              <v-list-tile-title style="font-weight:600">
               <nuxt-link :to="'/detail/'+item.id">{{item.title}}</nuxt-link>
-              <i class="subheading" style="color:rgb(0,0,0,0.54);font-weight:600;"> {{ item.createdAt | formatDate('MM-dd')}} </i>
+            </v-list-tile-title>
+            <v-list-tile-sub-title>
+              <span v-for="(tag,index) in item.tags" :key="index"><nuxt-link :to="'/tag/'+tag.id">{{tag.name}}</nuxt-link> | </span>
+               {{ item.createdAt | formatDate('MM-dd')}} 
+            </v-list-tile-sub-title>
             </div>
-          </div>
-          </div>
+          </v-list-tile-content>
+          </v-list-tile>
     </div>
-  </div>
+  </v-list>
 </template>
 <script>
 export default {
