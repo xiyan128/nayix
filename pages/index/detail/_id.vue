@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="display-1 my-2">{{article.title}}</h1>
     <div class="grey--text subheading">
       {{article.createdAt.substring(0,10)}} | 
       <span v-for="(tag,index) in article.tags" :key="index"><nuxt-link :to="'/tag/'+tag.id">{{tag.name}}</nuxt-link> | </span>
