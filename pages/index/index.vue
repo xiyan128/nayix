@@ -1,21 +1,7 @@
 <template>
   <div>
-
-      <v-layout row wrap>
-        <v-flex xs12 sm8>
-          <h1 class="display-1 my-2">主页</h1>
-        </v-flex>
-          <v-flex sm12 md4>
-            <v-text-field append-icon="search" class="mx-0" label="搜索" clearable solo @click:append="search" @keyup.enter="search" v-model="keyword" required></v-text-field>
-          </v-flex>
-      </v-layout>
-
-    
-
-      <div>
-        <articleItem v-bind="item" v-for="(item, index) in list" :key="index"></articleItem>
-        <loadMoreItem :isNoMore="noMore" :isShowLoading="isShowLoading" @load-more="loadMore"></loadMoreItem>
-    </div>
+    <articleItem v-bind="item" v-for="(item, index) in list" :key="index"></articleItem>
+    <loadMoreItem :isNoMore="noMore" :isShowLoading="isShowLoading" @load-more="loadMore"></loadMoreItem>
   </div>
 </template>
 
@@ -55,9 +41,6 @@ export default {
       this.isShowLoading = false
       this.noMore = data.length < this.pageLim
       this.list.push(...data)
-    },
-    search () {
-      if (this.keyword.replace(/(^s*)|(s*$)/g, '').length !== 0) this.$router.push(`search/${this.keyword}`)
     }
   }
 

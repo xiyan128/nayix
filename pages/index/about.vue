@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="display-1 my-2">关于</h1>
     <div class="markdown-body">
       <h1>Nayix</h1>
       <blockquote>

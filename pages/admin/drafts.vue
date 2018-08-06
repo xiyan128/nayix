@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="display-1 my-2">草稿</h1>
     <div>
       <v-card flat color="grey lighten-5" v-for="(item, index) in list" :key="index">
         <v-card-title primary-title class="pa-3 mb-2">
@@ -12,7 +11,7 @@
                 </nuxt-link>
                 <div class="grey--text subheading hidden-xs-only">{{item.createdAt.substring(0,10)}} |
                   <span v-for="(tag,index) in item.tags" :key="index">
-                    <nuxt-link :to="'/tags/'+tag.id">{{tag.name}}</nuxt-link> | </span>{{item.views}} views</div>
+                    <nuxt-link :to="'/tag/'+tag.id">{{tag.name}}</nuxt-link> | </span>{{item.views}} views</div>
               </div>
             </v-flex>
             <v-flex xs4 md2>

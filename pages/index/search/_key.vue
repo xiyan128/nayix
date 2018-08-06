@@ -1,13 +1,9 @@
 <template>
   <div>
-    <h1 class="display-1 my-2">"{{$route.params.key}}"的搜索结果</h1>
-      <div>
-        <articleItem v-bind="item" v-for="(item, index) in list" :key="index"></articleItem>
-        <v-alert :value="true" type="error" v-if="list.length==0" class="subheading">
-          非常遗憾，搜索无果
-        </v-alert>
-
-    </div>
+    <articleItem v-bind="item" v-for="(item, index) in list" :key="index"></articleItem>
+    <v-alert :value="true" type="error" v-if="list.length==0" class="subheading">
+      非常遗憾，搜索无果
+    </v-alert>
   </div>
 </template>
 

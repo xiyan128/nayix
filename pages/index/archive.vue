@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="display-1 my-2">归档</h1>
     <div v-for="(archive, index) in archives" :key="index">
       <h3>{{ archive.date }}({{ archive.total }})</h3>
       <v-divider class="my-2"></v-divider>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="display-1 my-2">撰写</h1>
     <v-form v-model="valid">
     <v-text-field label="标题" v-model="article.title" :rules="requiredRule"></v-text-field>
     <!-- md+ -->

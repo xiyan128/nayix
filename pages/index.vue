@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <!-- 边栏 -->
-    <v-navigation-drawer fixed app width="400" class="my-2 mr-4 elevation-1 pb-0" height="auto" style="::-webkit-scrollbar:none;" v-model="drawer">
+    <v-navigation-drawer fixed app width="400" :class="$vuetify.breakpoint.smAndDown || 'my-2 mr-4 elevation-1 pb-0'" height="auto" style="::-webkit-scrollbar:none;"
+      v-model="drawer">
 
       <!-- 顶部 -->
       <v-toolbar prominent class="pa-2 py-4 elevation-0" style="border-left: 5px solid #0D47A1;">
@@ -16,8 +17,8 @@
             </v-flex>
           </v-layout>
         </v-container>
-
       </v-toolbar>
+
 
       <!-- <v-divider></v-divider> -->
 
@@ -53,7 +54,7 @@
 
         <div class="pa-2 px-4" style="border-left: 5px solid #1E88E5">
           <li class="ma-1" style="display:inline;" v-for="(tag, index) in $store.state.tags" :key="index">
-            <nuxt-link :to="'/tags/'+tag.id">
+            <nuxt-link :to="'/tag/'+tag.id">
               <v-chip>{{tag.name}}</v-chip>
             </nuxt-link>
           </li>
@@ -71,7 +72,7 @@
         <!-- 脚注 -->
         <v-footer class="pa-3">
           <strong>
-            <nuxt-link to="/admin">站长登录</nuxt-link>
+            <nuxt-link to="/admin/manage">站长登录</nuxt-link>
           </strong>
           <v-spacer></v-spacer>
           <div>Xiyan Shao &copy; {{ new Date().getFullYear() }}</div>
@@ -83,20 +84,21 @@
 
     <!-- 主栏 -->
     <v-content>
-      <v-container fluid style="max-width:1185px !important" class="pa-2">
-        <v-card class="pa-3" :flat="$vuetify.breakpoint.smAndDown">
-          <v-fab-transition>
-          <v-btn color="primary" class="hidden-md-and-up" fab dark small absolute right @click.stop="drawer = !drawer">
-            <v-icon>menu</v-icon>
-          </v-btn>
-          </v-fab-transition>
-          <!-- <v-breadcrumbs class="pa-0">
-            <v-breadcrumbs-item>a</v-breadcrumbs-item>
-            <v-breadcrumbs-item>a</v-breadcrumbs-item>
-            <v-breadcrumbs-item>a</v-breadcrumbs-item>
-          </v-breadcrumbs>
-          <v-divider class="mt-2"></v-divider> -->
-          <nuxt-child/>
+      <v-container fluid style="max-width:1185px !important" :class="$vuetify.breakpoint.smAndDown ? 'pa-0' : 'pa-2'">
+        <v-card :flat="$vuetify.breakpoint.smAndDown">
+          <v-toolbar class="elevation-1" scroll-toolbar-off-screen>
+            <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-flex md8 lg10>
+            <v-toolbar-title>{{ getTitleName() }}</v-toolbar-title>
+            </v-flex>
+            <v-flex md4 lg2>
+            <v-text-field hide-details prepend-icon="search" single-line label="搜索" clearable @click:prepend="search" @keyup.enter="search" v-model="keyword" required></v-text-field>
+            </v-flex>
+          </v-toolbar>
+          <div :class="$vuetify.breakpoint.smAndDown ? 'pa-2' : 'pa-3'">
+
+            <nuxt-child/>
+          </div>
         </v-card>
       </v-container>
     </v-content>
@@ -113,7 +115,24 @@ export default {
   },
   data () {
     return {
-      drawer: !this.$vuetify.breakpoint.smAndDown
+      drawer: !this.$vuetify.breakpoint.smAndDown,
+      keyword: ''
+    }
+  },
+  methods: {
+    search () {
+      if (this.keyword.replace(/(^s*)|(s*$)/g, '').length !== 0) this.$router.push(`search/${this.keyword}`)
+    },
+    getTitleName () {
+      switch (this.$route.name) {
+        case 'index': return '主页'
+        case 'index-archive': return '归档'
+        case 'index-detail-id': return '文章'
+        case 'index-search-key': return `"${this.$route.params.key}"的搜索结果`
+        case 'index-tag-id': return '标签检索'
+        case 'index-about': return '关于'
+        default: return '未知'
+      }
     }
   }
 }
