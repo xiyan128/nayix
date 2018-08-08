@@ -2,7 +2,7 @@
   <v-app>
 
     <!-- 边栏 -->
-    <v-navigation-drawer fixed app width="400" :class="$vuetify.breakpoint.mdAndDown || 'my-2 mr-4 elevation-1 pb-0'" :height="$vuetify.breakpoint.mdAndDown ? '100%' : 'auto'"  style="::-webkit-scrollbar:none;"
+    <v-navigation-drawer fixed app width="400" :class="isMobile || 'my-2 mr-4 elevation-1 pb-0'" :height="isMobile ? '100%' : 'auto'"  style="::-webkit-scrollbar:none;"
       v-model="drawer">
 
       <!-- 顶部 -->
@@ -54,7 +54,7 @@
 
 
         <!-- 脚注 -->
-        <v-footer class="pa-3" :style="$vuetify.breakpoint.lgAndUp || 'position:fixed;width:100%;bottom:0'">
+        <v-footer class="pa-3" :style="!isMobile || 'position:fixed;width:100%;bottom:0'">
           <strong>
             <a @click="logout">退出登录</a>
           </strong>
@@ -68,8 +68,8 @@
 
     <!-- 主栏 -->
     <v-content>
-      <v-container fluid style="max-width:1185px !important" :class="$vuetify.breakpoint.mdAndDown ? 'pa-0' : 'pa-2'">
-        <v-card :flat="$vuetify.breakpoint.smAndDown">
+      <v-container fluid style="max-width:1185px !important" :class="isMobile ? 'pa-0' : 'pa-2'">
+        <v-card :flat="isMobile">
           <v-toolbar class="elevation-1" scroll-toolbar-off-screen>
             <v-toolbar-side-icon v-if="!drawer" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>{{ getTitleName() }}</v-toolbar-title>
@@ -114,7 +114,12 @@ export default {
   },
   data () {
     return {
-      drawer: !this.$vuetify.breakpoint.smAndDown
+      drawer: !this.isMobile
+    }
+  },
+  computed: {
+    isMobile () {
+      return this.$vuetify.breakpoint.mdAndDown
     }
   }
 }
