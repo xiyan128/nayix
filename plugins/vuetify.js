@@ -23,7 +23,8 @@ import {
   VTextarea,
   VCombobox,
   VSwitch,
-  VSnackbar
+  VSnackbar,
+  VSubheader
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -50,6 +51,7 @@ Vue.use(Vuetify, {
     VTextarea,
     VCombobox,
     VSwitch,
-    VSnackbar
+    VSnackbar,
+    VSubheader
   }
 })

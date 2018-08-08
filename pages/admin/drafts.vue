@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <v-card flat color="grey lighten-5" v-for="(item, index) in list" :key="index">
+      <v-card :flat="$vuetify.breakpoint.lgAndUp" color="grey lighten-5" v-for="(item, index) in list" :key="index">
         <v-card-title primary-title class="pa-3 mb-2">
           <v-layout justify-space-between row fill-height>
             <v-flex xs8 md10>
@@ -9,7 +9,7 @@
                 <nuxt-link :to="'/detail/'+item.id">
                   <div class="title mb-1 single-line">{{item.title}}</div>
                 </nuxt-link>
-                <div class="grey--text subheading hidden-xs-only">{{item.createdAt.substring(0,10)}} |
+                <div class="grey--text subheading single-line">{{item.createdAt | formatDate("yyyy年MM月dd日")}} |
                   <span v-for="(tag,index) in item.tags" :key="index">
                     <nuxt-link :to="'/tag/'+tag.id">{{tag.name}}</nuxt-link> | </span>{{item.views}} views</div>
               </div>

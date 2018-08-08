@@ -1,5 +1,5 @@
 <template>
-  <v-card flat color="grey lighten-5">
+  <v-card :flat="$vuetify.breakpoint.lgAndUp" color="grey lighten-5">
     <v-card-title primary-title class="pa-3" @click="loadMore">
     <p v-show="!isNoMore && !isShowLoading" class="my-0 mx-auto grey--text text--darken-2"> 加载更多 </p>
     <p v-show="isNoMore" class="my-0 mx-auto grey--text text--darken-2"> 没有更多了 </p>

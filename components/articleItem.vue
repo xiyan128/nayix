@@ -1,9 +1,9 @@
 <template>
-  <v-card flat color="grey lighten-5 mb-3">
+  <v-card :flat="$vuetify.breakpoint.lgAndUp" color="grey lighten-5 mb-3">
     <v-card-title primary-title class="pb-0">
       <div style="overflow:hidden;width: 100%;">
         <nuxt-link :to="'/detail/'+id"><div class="title mb-1 single-line">{{title}}</div></nuxt-link>
-        <div class="grey--text subheading single-line">{{createdAt.substring(0,10)}} | <span v-for="(tag,index) in tags" :key="index"><nuxt-link :to="'/tag/'+tag.id">{{tag.name}}</nuxt-link> | </span>{{views}} views</div>
+        <div class="grey--text subheading single-line">{{createdAt | formatDate("yyyy年MM月dd日")}} | <span v-for="(tag,index) in tags" :key="index"><nuxt-link :to="'/tag/'+tag.id">{{tag.name}}</nuxt-link> | </span>{{views}} views</div>
         <div class="limited"><div class="markdown-body" v-html="html"></div></div>
       </div>
     </v-card-title>

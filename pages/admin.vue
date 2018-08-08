@@ -2,7 +2,7 @@
   <v-app>
 
     <!-- 边栏 -->
-    <v-navigation-drawer fixed app width="400" :class="$vuetify.breakpoint.smAndDown || 'my-2 mr-4 elevation-1 pb-0'" height="auto" style="::-webkit-scrollbar:none;"
+    <v-navigation-drawer fixed app width="400" :class="$vuetify.breakpoint.mdAndDown || 'my-2 mr-4 elevation-1 pb-0'" :height="$vuetify.breakpoint.mdAndDown ? '100%' : 'auto'"  style="::-webkit-scrollbar:none;"
       v-model="drawer">
 
       <!-- 顶部 -->
@@ -53,35 +53,29 @@
           </v-list-tile>
 
 
-          <!-- 脚注 -->
-          <v-footer class="pa-3">
-            <!-- TODO: 清除登录状态 -->
-            <strong><a @click="logout">退出登录</a></strong>
-            <v-spacer></v-spacer>
-            <div>Xiyan Shao &copy; {{ new Date().getFullYear() }}</div>
-          </v-footer>
+        <!-- 脚注 -->
+        <v-footer class="pa-3" :style="$vuetify.breakpoint.lgAndUp || 'position:fixed;width:100%;bottom:0'">
+          <strong>
+            <a @click="logout">退出登录</a>
+          </strong>
+          <v-spacer></v-spacer>
+          <div>Xiyan Shao &copy; {{ new Date().getFullYear() }}</div>
+        </v-footer>
 
-        </v-list>
-      
+      </v-list>
+
     </v-navigation-drawer>
 
     <!-- 主栏 -->
     <v-content>
-      <v-container fluid style="max-width:1185px !important" :class="$vuetify.breakpoint.smAndDown ? 'pa-0' : 'pa-2'">
+      <v-container fluid style="max-width:1185px !important" :class="$vuetify.breakpoint.mdAndDown ? 'pa-0' : 'pa-2'">
         <v-card :flat="$vuetify.breakpoint.smAndDown">
-          <v-toolbar class="elevation-1">
-            <v-toolbar-side-icon v-if="$vuetify.breakpoint.smAndDown" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+          <v-toolbar class="elevation-1" scroll-toolbar-off-screen>
+            <v-toolbar-side-icon v-if="!drawer" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>{{ getTitleName() }}</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon @click="logout"><v-icon>home</v-icon></v-btn>
           </v-toolbar>
-          <div :class="$vuetify.breakpoint.smAndDown ? 'pa-2' : 'pa-3'">
-            <!-- <v-breadcrumbs class="pa-0">
-            <v-breadcrumbs-item>a</v-breadcrumbs-item>
-            <v-breadcrumbs-item>a</v-breadcrumbs-item>
-            <v-breadcrumbs-item>a</v-breadcrumbs-item>
-          </v-breadcrumbs>
-          <v-divider class="mt-2"></v-divider> -->
+          <div class="pa-3">
+
             <nuxt-child/>
           </div>
         </v-card>

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- 边栏 -->
-    <v-navigation-drawer fixed app width="400" :class="$vuetify.breakpoint.smAndDown || 'my-2 mr-4 elevation-1 pb-0'" height="auto" style="::-webkit-scrollbar:none;"
+    <v-navigation-drawer fixed app width="400" :class="isMobile || 'my-2 mr-4 elevation-1 pb-0'" :height="isMobile ? '100%' : 'auto'"  style="::-webkit-scrollbar:none;"
       v-model="drawer">
 
       <!-- 顶部 -->
@@ -70,7 +70,7 @@
 
 
         <!-- 脚注 -->
-        <v-footer class="pa-3">
+        <v-footer class="pa-3" :style="!isMobile || 'position:fixed;width:100%;bottom:0'">
           <strong>
             <nuxt-link to="/admin/manage">站长登录</nuxt-link>
           </strong>
@@ -84,10 +84,10 @@
 
     <!-- 主栏 -->
     <v-content>
-      <v-container fluid style="max-width:1185px !important" :class="$vuetify.breakpoint.smAndDown ? 'pa-0' : 'pa-2'">
-        <v-card :flat="$vuetify.breakpoint.smAndDown">
+      <v-container fluid style="max-width:1185px !important" :class="isMobile ? 'pa-0' : 'pa-2'">
+        <v-card :flat="isMobile">
           <v-toolbar class="elevation-1" scroll-toolbar-off-screen>
-            <v-toolbar-side-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+          <v-toolbar-side-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-flex md8 lg10>
             <v-toolbar-title>{{ getTitleName() }}</v-toolbar-title>
             </v-flex>
@@ -95,7 +95,7 @@
             <v-text-field hide-details prepend-icon="search" single-line label="搜索" clearable @click:prepend="search" @keyup.enter="search" v-model="keyword" required></v-text-field>
             </v-flex>
           </v-toolbar>
-          <div :class="$vuetify.breakpoint.smAndDown ? 'pa-2' : 'pa-3'">
+          <div class="pa-3">
 
             <nuxt-child/>
           </div>
@@ -113,9 +113,12 @@ export default {
       title: this.$store.state.user.nickname
     }
   },
+  created () {
+    this.$vuetify.mdAndDown = false
+  },
   data () {
     return {
-      drawer: !this.$vuetify.breakpoint.smAndDown,
+      drawer: this.isMobile,
       keyword: ''
     }
   },
@@ -133,6 +136,11 @@ export default {
         case 'index-about': return '关于'
         default: return '未知'
       }
+    }
+  },
+  computed: {
+    isMobile () {
+      return this.$vuetify.breakpoint.mdAndDown
     }
   }
 }
